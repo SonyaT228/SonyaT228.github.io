@@ -1,52 +1,583 @@
 <!DOCTYPE html>
 <html lang="ru">
-
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Резюме</title>
-    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>DataMint — Аналитика для всех</title>
+    <!-- Шрифты -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <!-- Font Awesome 6 (иконки) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            transition: background-color 0.4s ease, color 0.3s ease;
+            overflow-x: hidden;
+        }
+
+        /* === РЕЖИМЫ (классы на body) === */
+        body.mode-beginner {
+            background: linear-gradient(135deg, #f5f7fc 0%, #eef2f8 100%);
+            color: #1a2634;
+        }
+
+        body.mode-professional {
+            background: #0a0f1a;
+            color: #eef2ff;
+        }
+
+        /* Видео-фон */
+        .video-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -2;
+            transition: opacity 0.6s ease;
+        }
+
+        body.mode-beginner .video-background {
+            opacity: 0.2;
+        }
+
+        body.mode-professional .video-background {
+            opacity: 0.7;
+        }
+
+        /* Затемнение поверх фона */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            transition: background 0.4s ease;
+        }
+
+        body.mode-beginner .overlay {
+            background: rgba(255, 255, 255, 0.75);
+        }
+
+        body.mode-professional .overlay {
+            background: rgba(0, 0, 0, 0.65);
+        }
+
+        /* Контейнер */
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 32px;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* === ШАПКА === */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px 0;
+            flex-wrap: wrap;
+            gap: 20px;
+            border-bottom: 1px solid rgba(128, 128, 128, 0.2);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        body.mode-beginner .logo {
+            color: #1a4d3a;
+        }
+
+        body.mode-professional .logo {
+            color: #4fcc9e;
+        }
+
+        .logo span {
+            font-weight: 300;
+        }
+
+        /* Переключатель режимов */
+        .mode-switch {
+            display: flex;
+            background: rgba(128, 128, 128, 0.2);
+            border-radius: 60px;
+            padding: 4px;
+            backdrop-filter: blur(4px);
+        }
+
+        .mode-btn {
+            padding: 8px 24px;
+            border: none;
+            background: transparent;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 0.9rem;
+            border-radius: 60px;
+            cursor: pointer;
+            transition: 0.2s;
+            color: inherit;
+        }
+
+        .mode-btn.active {
+            background: #4fcc9e;
+            color: #0a0f1a;
+            box-shadow: 0 2px 8px rgba(79, 204, 158, 0.3);
+        }
+
+        body.mode-beginner .mode-btn.active {
+            background: #1a4d3a;
+            color: white;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.2s;
+        }
+
+        body.mode-beginner .nav-links a {
+            color: #2c3e44;
+        }
+
+        body.mode-professional .nav-links a {
+            color: #cbd5e6;
+        }
+
+        .btn-outline {
+            padding: 8px 20px;
+            border-radius: 40px;
+            border: 1.5px solid;
+            background: transparent;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        body.mode-beginner .btn-outline {
+            border-color: #1a4d3a;
+            color: #1a4d3a;
+        }
+
+        body.mode-professional .btn-outline {
+            border-color: #4fcc9e;
+            color: #4fcc9e;
+        }
+
+        /* === HERO === */
+        .hero {
+            padding: 80px 0 100px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.8rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 24px;
+            letter-spacing: -1px;
+        }
+
+        .hero .subhead {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto 32px;
+            opacity: 0.85;
+            font-weight: 400;
+        }
+
+        .benefits {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin: 48px 0 40px;
+        }
+
+        .benefit-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .benefit-item i {
+            font-size: 1.4rem;
+        }
+
+        body.mode-beginner .benefit-item i {
+            color: #1a4d3a;
+        }
+
+        body.mode-professional .benefit-item i {
+            color: #4fcc9e;
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            padding: 14px 36px;
+            border-radius: 48px;
+            font-weight: 700;
+            font-size: 1rem;
+            border: none;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        body.mode-beginner .btn-primary {
+            background: #1a4d3a;
+            color: white;
+        }
+
+        body.mode-professional .btn-primary {
+            background: #4fcc9e;
+            color: #0a0f1a;
+        }
+
+        .btn-secondary {
+            padding: 14px 36px;
+            border-radius: 48px;
+            font-weight: 600;
+            background: transparent;
+            border: 1.5px solid;
+            cursor: pointer;
+        }
+
+        body.mode-beginner .btn-secondary {
+            border-color: #1a4d3a;
+            color: #1a4d3a;
+        }
+
+        body.mode-professional .btn-secondary {
+            border-color: #cbd5e6;
+            color: #cbd5e6;
+        }
+
+        .demo-hint {
+            margin-top: 32px;
+            font-size: 0.85rem;
+            opacity: 0.6;
+        }
+
+        /* === Блок "Как это работает" === */
+        .section {
+            padding: 80px 0;
+            border-top: 1px solid rgba(128, 128, 128, 0.15);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 60px;
+            font-weight: 600;
+        }
+
+        .cards {
+            display: flex;
+            gap: 32px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            flex: 1;
+            min-width: 240px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(8px);
+            padding: 32px 24px;
+            border-radius: 32px;
+            text-align: center;
+            transition: 0.2s;
+            border: 1px solid rgba(128, 128, 128, 0.2);
+        }
+
+        body.mode-beginner .card {
+            background: rgba(255, 255, 255, 0.6);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.03);
+        }
+
+        .card i {
+            font-size: 2.4rem;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        body.mode-beginner .card i {
+            color: #1a4d3a;
+        }
+
+        body.mode-professional .card i {
+            color: #4fcc9e;
+        }
+
+        .card h3 {
+            margin-bottom: 12px;
+            font-size: 1.4rem;
+        }
+
+        /* === Тарифы === */
+        .pricing {
+            display: flex;
+            gap: 32px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .plan {
+            flex: 1;
+            min-width: 260px;
+            padding: 32px;
+            border-radius: 32px;
+            background: rgba(0,0,0,0.2);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        body.mode-beginner .plan {
+            background: white;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.05);
+        }
+
+        .plan h3 {
+            font-size: 1.6rem;
+            margin-bottom: 16px;
+        }
+        .price {
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 20px 0;
+        }
+
+        /* === Футер === */
+        footer {
+            text-align: center;
+            padding: 48px 0 32px;
+            border-top: 1px solid rgba(128, 128, 128, 0.2);
+            font-size: 0.85rem;
+            opacity: 0.7;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.4rem; }
+            .container { padding: 0 20px; }
+            header { flex-direction: column; }
+            .mode-switch { order: 2; }
+        }
+    </style>
 </head>
+<body class="mode-beginner">
 
-<body>
-    <h1>Терехова София</h1>
-    <h2>Верстальщик</h2>
+    <!-- Фоновое видео (замените ссылку на своё или удалите, если не нужно) -->
+    <video autoplay loop muted playsinline class="video-background" poster="https://placehold.co/1920x1080/0A1628/white?text=DataMint">
+        <source src="https://assets.mixkit.co/videos/preview/mixkit-digital-statistics-and-data-center-3164-large.mp4" type="video/mp4">
+        Ваш браузер не поддерживает видео.
+    </video>
+    <div class="overlay"></div>
 
-    <section>
-        <h2>Образование</h2>
-        <ul>
-            <li>Среднее общее образование: Бюджетный лицей №40 г. Орла</li>
-            <li>
-                <p>Неполное высшее образование: ФГБОУ ВО «Орловский государственный университет имени И.С. Тургенева».
-                </p>
-                <p>Направление подготовки: 01.03.05</p>
-                <p>Профиль/направленность: Математическая статистика и современный анализ данных (data science)</p>
-                <p>Курс: 2</p>
-            </li>
-        </ul>
-    </section>
+    <div class="container">
+        <header>
+            <div class="logo">Data<span>Mint</span></div>
+            <div class="mode-switch" id="modeSwitch">
+                <button class="mode-btn active" data-mode="beginner">👶 Новичок</button>
+                <button class="mode-btn" data-mode="professional">👨‍💻 Профессионал</button>
+            </div>
+            <div class="nav-links">
+                <a href="#">Возможности</a>
+                <a href="#">Тарифы</a>
+                <a href="#">Блог</a>
+                <button class="btn-outline" id="loginBtn">Войти</button>
+            </div>
+        </header>
 
-    <section>
-        <h2>Мои навыки</h2>
-        <ul>
-            <li>Работа с базами данных</li>
-            <li>Работа в программах Microsoft office</li>
-            <li>Навыки работы в Python</li>
-            <li>Навыки создания сайта с помощью HTML</li>
-        </ul>
-    </section>
+        <!-- Hero блок (динамический) -->
+        <section class="hero" id="heroBlock">
+            <h1 id="heroTitle">Аналитика, которая говорит по-человечески</h1>
+            <div class="subhead" id="heroSubhead">Готовые отчёты, понятные графики и подсказки внутри — без формул и сложных настроек.</div>
+            <div class="benefits" id="benefitsList">
+                <div class="benefit-item"><i class="fas fa-file-excel"></i> <span>Загрузите Excel/CSV</span></div>
+                <div class="benefit-item"><i class="fas fa-chart-line"></i> <span>Автоинсайты</span></div>
+                <div class="benefit-item"><i class="fas fa-traffic-light"></i> <span>Светофор по KPI</span></div>
+            </div>
+            <div class="cta-group">
+                <button class="btn-primary" id="mainCta">🔘 Начать бесплатно</button>
+                <button class="btn-secondary" id="secondaryCta">Смотреть демо</button>
+            </div>
+            <div class="demo-hint" id="demoHint">Без карты, без телефона — просто email</div>
+        </section>
 
-    <section>
-        <h2>Дополнительная информация</h2>
-        <ul>
-            <li>Управление автомобилем</li>
-            <li>Базовые умения работы в Фотошопе</li>
-        </ul>
-        <p>Github: <a href="https://sonyat228.github.io/mamon/">мамон</a></p>
-        <p>Tilda: <a href=" http://tilda-sonya-t.tilda.ws">Сайт с едой</a></p>
-        <p>Tilda: <a href="http://project13298191.tilda.ws">Сайт открытые двери Огу</a></p>
-        <p>WordPress: <a href="http://sonyatd7.beget.tech">Блог</a></p>
-    </section>
+        <!-- Блок "Как это работает" -->
+        <section class="section">
+            <h2 class="section-title" id="howTitle">Одна платформа — два мира</h2>
+            <div class="cards" id="cardsContainer">
+                <!-- контент карточек будет динамически меняться через JS -->
+                <div class="card"><i class="fas fa-upload"></i><h3>Загрузите данные</h3><p>CSV, Excel, CRM, Google Sheets</p></div>
+                <div class="card"><i class="fas fa-robot"></i><h3>Готовый отчёт</h3><p>Автоматические инсайты</p></div>
+                <div class="card"><i class="fas fa-chart-simple"></i><h3>Следите за целями</h3><p>Красный/зелёный по KPI</p></div>
+            </div>
+        </section>
+
+        <!-- Тарифы -->
+        <section class="section">
+            <h2 class="section-title" id="priceTitle">Выберите свой план</h2>
+            <div class="pricing" id="pricingContainer">
+                <!-- JS заполнит тарифы под режим -->
+            </div>
+        </section>
+
+        <footer>
+            <p>© 2025 DataMint — аналитика без границ</p>
+            <p style="margin-top: 12px;"><a href="#" style="color: inherit;">Политика конфиденциальности</a> | <a href="#" style="color: inherit;">Документация API</a></p>
+        </footer>
+    </div>
+
+    <script>
+        // ======================= ДАННЫЕ ДЛЯ ДВУХ РЕЖИМОВ =======================
+        const content = {
+            beginner: {
+                heroTitle: "Аналитика, которая говорит по-человечески",
+                heroSubhead: "Готовые отчёты, понятные графики и подсказки внутри. Вам не нужен аналитик в штате.",
+                benefits: [
+                    '<i class="fas fa-file-excel"></i> <span>Загрузите Excel/CSV</span>',
+                    '<i class="fas fa-chart-line"></i> <span>Автоинсайты простыми словами</span>',
+                    '<i class="fas fa-traffic-light"></i> <span>Светофор по KPI</span>'
+                ],
+                mainCtaText: "🔘 Начать бесплатно — режим Новичок",
+                secondaryCtaText: "Посмотреть демо (30 секунд)",
+                demoHint: "Без карты, без телефона — просто email",
+                cards: [
+                    { icon: "fas fa-upload", title: "Загрузите данные", desc: "CSV, Excel, CRM, Google Sheets — без лишних настроек" },
+                    { icon: "fas fa-chart-pie", title: "Готовый дашборд", desc: "Красивые графики и понятные цифры" },
+                    { icon: "fas fa-lightbulb", title: "Подсказки внутри", desc: "Что растёт, что падает — объясняем" }
+                ],
+                plans: [
+                    { name: "Базовый", price: "0 ₽", features: "1 дашборд / до 1000 строк", cta: "Начать" },
+                    { name: "Старт", price: "1 490 ₽", features: "10 дашбордов / автоотчёты", cta: "Выбрать" },
+                    { name: "Бизнес", price: "4 990 ₽", features: "Безлимит / приоритетная поддержка", cta: "Попробовать" }
+                ]
+            },
+            professional: {
+                heroTitle: "Гибкая аналитика на стероидах",
+                heroSubhead: "SQL-редактор, кастомные метрики, API, джойны и любые срезы данных. Контроль над каждым битом.",
+                benefits: [
+                    '<i class="fas fa-database"></i> <span>SQL + Python внутри</span>',
+                    '<i class="fas fa-chart-line"></i> <span>Кастомные дашборды</span>',
+                    '<i class="fas fa-plug"></i> <span>REST API & Webhooks</span>'
+                ],
+                mainCtaText: "🚀 Открыть консоль — режим Профессионал",
+                secondaryCtaText: "Документация для разработчиков",
+                demoHint: "Бесплатно до 10 000 запросов в месяц",
+                cards: [
+                    { icon: "fas fa-code", title: "Пишите запросы", desc: "SQL-редактор с автодополнением" },
+                    { icon: "fas fa-chart-line", title: "Любая визуализация", desc: "Heatmap, таблицы, кастомные чарты" },
+                    { icon: "fas fa-cloud-upload-alt", title: "API & Webhooks", desc: "Интеграция с любыми системами" }
+                ],
+                plans: [
+                    { name: "Free", price: "0 ₽", features: "1000 API-вызовов / SQL read-only", cta: "Начать" },
+                    { name: "Pro", price: "3 490 ₽", features: "100k вызовов / кастомные метрики", cta: "Выбрать" },
+                    { name: "Enterprise", price: "Цена по запросу", features: "SLA / on‑premise / аудит", cta: "Связаться" }
+                ]
+            }
+        };
+
+        // DOM элементы
+        const body = document.body;
+        const modeBtns = document.querySelectorAll('.mode-btn');
+        const heroTitle = document.getElementById('heroTitle');
+        const heroSubhead = document.getElementById('heroSubhead');
+        const benefitsList = document.getElementById('benefitsList');
+        const mainCta = document.getElementById('mainCta');
+        const secondaryCta = document.getElementById('secondaryCta');
+        const demoHint = document.getElementById('demoHint');
+        const cardsContainer = document.getElementById('cardsContainer');
+        const pricingContainer = document.getElementById('pricingContainer');
+
+        // Функция применения режима
+        function setMode(mode) {
+            const data = content[mode];
+            if (!data) return;
+
+            // Меняем класс на body
+            body.classList.remove('mode-beginner', 'mode-professional');
+            body.classList.add(`mode-${mode}`);
+
+            // Активная кнопка
+            modeBtns.forEach(btn => {
+                const btnMode = btn.getAttribute('data-mode');
+                if (btnMode === mode) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+
+            // Обновляем Hero
+            heroTitle.innerText = data.heroTitle;
+            heroSubhead.innerText = data.heroSubhead;
+            benefitsList.innerHTML = data.benefits.map(b => `<div class="benefit-item">${b}</div>`).join('');
+            mainCta.innerText = data.mainCtaText;
+            secondaryCta.innerText = data.secondaryCtaText;
+            demoHint.innerText = data.demoHint;
+
+            // Обновляем карточки "Как это работает"
+            cardsContainer.innerHTML = data.cards.map(card => `
+                <div class="card">
+                    <i class="${card.icon}"></i>
+                    <h3>${card.title}</h3>
+                    <p>${card.desc}</p>
+                </div>
+            `).join('');
+
+            // Обновляем тарифы
+            pricingContainer.innerHTML = data.plans.map(plan => `
+                <div class="plan">
+                    <h3>${plan.name}</h3>
+                    <div class="price">${plan.price}</div>
+                    <p>${plan.features}</p>
+                    <button class="btn-primary" style="margin-top: 20px; width: 100%;">${plan.cta}</button>
+                </div>
+            `).join('');
+        }
+
+        // Обработчики переключения режимов
+        modeBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const mode = btn.getAttribute('data-mode');
+                setMode(mode);
+            });
+        });
+
+        // Просто для демо — алерты на кнопки
+        document.getElementById('loginBtn')?.addEventListener('click', () => alert('Форма входа (демо)'));
+        mainCta.addEventListener('click', () => alert('Регистрация / начало работы (демо)'));
+        secondaryCta.addEventListener('click', () => alert('Демо-режим (видео / экскурсия)'));
+
+        // Стартовый режим — новичок
+        setMode('beginner');
+    </script>
 </body>
-
 </html>

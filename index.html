@@ -142,37 +142,6 @@
             color: white;
         }
 
-        /* Переключатель языков */
-        .lang-switch {
-            display: flex;
-            gap: 8px;
-            background: rgba(128, 128, 128, 0.15);
-            border-radius: 40px;
-            padding: 4px 12px;
-        }
-
-        .lang-btn {
-            background: transparent;
-            border: none;
-            padding: 6px 12px;
-            border-radius: 32px;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 0.8rem;
-            transition: 0.2s;
-            color: inherit;
-        }
-
-        .lang-btn.active {
-            background: #4fcc9e;
-            color: #0a0f1a;
-        }
-
-        body.mode-beginner .lang-btn.active {
-            background: #1a4d3a;
-            color: white;
-        }
-
         .nav-links {
             display: flex;
             gap: 32px;
@@ -183,7 +152,6 @@
             text-decoration: none;
             font-weight: 500;
             transition: 0.2s;
-            cursor: pointer;
         }
 
         body.mode-beginner .nav-links a {
@@ -324,7 +292,7 @@
 
         .section-title {
             text-align: center;
-            font-size: 2rem;
+            font-size: 2.2rem;
             margin-bottom: 60px;
             font-weight: 600;
         }
@@ -388,11 +356,6 @@
             background: rgba(0,0,0,0.2);
             backdrop-filter: blur(8px);
             border: 1px solid rgba(255,255,255,0.1);
-            transition: transform 0.2s;
-        }
-
-        .plan:hover {
-            transform: translateY(-5px);
         }
 
         body.mode-beginner .plan {
@@ -402,202 +365,12 @@
 
         .plan h3 {
             font-size: 1.6rem;
-            margin-bottom: 8px;
-        }
-
-        .plan .period {
-            font-size: 0.9rem;
-            opacity: 0.7;
             margin-bottom: 16px;
         }
-
         .price {
             font-size: 2rem;
             font-weight: 700;
             margin: 20px 0;
-        }
-
-        .price small {
-            font-size: 0.9rem;
-            font-weight: 400;
-        }
-
-        .plan-features {
-            list-style: none;
-            margin: 20px 0;
-            padding: 0;
-        }
-
-        .plan-features li {
-            padding: 8px 0;
-            font-size: 0.9rem;
-            opacity: 0.8;
-        }
-
-        .plan-features i {
-            margin-right: 8px;
-            font-size: 0.8rem;
-        }
-
-        body.mode-beginner .plan-features i {
-            color: #1a4d3a;
-        }
-
-        body.mode-professional .plan-features i {
-            color: #4fcc9e;
-        }
-
-        /* === Модальное окно регистрации === */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .modal.active {
-            display: flex;
-        }
-
-        .modal-content {
-            max-width: 500px;
-            width: 90%;
-            background: #fff;
-            border-radius: 32px;
-            padding: 40px;
-            position: relative;
-            animation: modalFadeIn 0.3s ease;
-        }
-
-        body.mode-professional .modal-content {
-            background: #1a1f2e;
-            color: #eef2ff;
-        }
-
-        @keyframes modalFadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .modal-close {
-            position: absolute;
-            top: 20px;
-            right: 24px;
-            font-size: 24px;
-            cursor: pointer;
-            background: none;
-            border: none;
-            font-size: 28px;
-            color: #666;
-        }
-
-        body.mode-professional .modal-close {
-            color: #cbd5e6;
-        }
-
-        .modal h2 {
-            margin-bottom: 8px;
-            font-size: 1.8rem;
-        }
-
-        .modal-subtitle {
-            margin-bottom: 28px;
-            opacity: 0.7;
-            font-size: 0.9rem;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
-            font-size: 0.9rem;
-        }
-
-        .form-group input,
-        .form-group select {
-            width: 100%;
-            padding: 14px 16px;
-            border-radius: 16px;
-            border: 1px solid #ddd;
-            font-family: 'Inter', sans-serif;
-            font-size: 1rem;
-            background: #fff;
-            transition: 0.2s;
-        }
-
-        body.mode-professional .form-group input,
-        body.mode-professional .form-group select {
-            background: #2a2f3e;
-            border-color: #3a3f4e;
-            color: #eef2ff;
-        }
-
-        .form-group input:focus,
-        .form-group select:focus {
-            outline: none;
-            border-color: #4fcc9e;
-            box-shadow: 0 0 0 3px rgba(79, 204, 158, 0.2);
-        }
-
-        .selected-plan-info {
-            background: rgba(79, 204, 158, 0.1);
-            padding: 12px 16px;
-            border-radius: 16px;
-            margin-bottom: 24px;
-            font-size: 0.9rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .selected-plan-price {
-            font-weight: 700;
-            font-size: 1.2rem;
-            color: #4fcc9e;
-        }
-
-        .btn-submit {
-            width: 100%;
-            padding: 14px;
-            border-radius: 48px;
-            background: #4fcc9e;
-            color: #0a0f1a;
-            border: none;
-            font-weight: 700;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: 0.2s;
-            margin-top: 10px;
-        }
-
-        .btn-submit:hover {
-            background: #3bb586;
-            transform: translateY(-2px);
-        }
-
-        body.mode-beginner .btn-submit {
-            background: #1a4d3a;
-            color: white;
-        }
-
-        body.mode-beginner .btn-submit:hover {
-            background: #0f3527;
         }
 
         /* === Футер === */
@@ -609,57 +382,41 @@
             opacity: 0.7;
         }
 
-        footer a {
-            color: inherit;
-            text-decoration: none;
-        }
-
-        footer a:hover {
-            text-decoration: underline;
-        }
-
         @media (max-width: 768px) {
             .hero h1 { font-size: 2.4rem; }
             .container { padding: 0 20px; }
             header { flex-direction: column; }
             .mode-switch { order: 2; }
-            .section-title { font-size: 1.6rem; }
-            .modal-content { padding: 30px 20px; }
         }
     </style>
 </head>
 <body class="mode-beginner">
 
-    <!-- Фоновое видео -->
+    <!-- Фоновое видео (замените ссылку на своё или удалите, если не нужно) -->
     <video autoplay loop muted playsinline class="video-background" poster="https://placehold.co/1920x1080/0A1628/white?text=DataMint">
         <source src="https://assets.mixkit.co/videos/preview/mixkit-digital-statistics-and-data-center-3164-large.mp4" type="video/mp4">
+        Ваш браузер не поддерживает видео.
     </video>
     <div class="overlay"></div>
 
     <div class="container">
         <header>
             <div class="logo">Data<span>Mint</span></div>
-            <div style="display: flex; gap: 16px; align-items: center;">
-                <div class="lang-switch" id="langSwitch">
-                    <button class="lang-btn active" data-lang="ru">РУ</button>
-                    <button class="lang-btn" data-lang="en">EN</button>
-                </div>
-                <div class="mode-switch" id="modeSwitch">
-                    <button class="mode-btn active" data-mode="beginner">Аналитический режим для новичка</button>
-                    <button class="mode-btn" data-mode="professional">Аналитический режим для профессионала</button>
-                </div>
+            <div class="mode-switch" id="modeSwitch">
+                <button class="mode-btn active" data-mode="beginner">Новичок</button>
+                <button class="mode-btn" data-mode="professional">Профессионал</button>
             </div>
             <div class="nav-links">
-                <a class="nav-features">Возможности</a>
-                <a class="nav-pricing">Тарифы</a>
-                <a class="nav-blog">Блог</a>
+                <a href="#">Возможности</a>
+                <a href="#">Тарифы</a>
+                <a href="#">Блог</a>
                 <button class="btn-outline" id="loginBtn">Войти</button>
             </div>
         </header>
 
-        <!-- Hero блок -->
+        <!-- Hero блок (динамический) -->
         <section class="hero" id="heroBlock">
-            <h1 id="heroTitle">Аналитическая платформа для инвесторов</h1>
+            <h1 id="heroTitle">Аналитика, которая говорит по-человечески</h1>
             <div class="subhead" id="heroSubhead">Готовые отчёты, понятные графики и подсказки внутри — без формул и сложных настроек.</div>
             <div class="benefits" id="benefitsList">
                 <div class="benefit-item"><i class="fas fa-file-excel"></i> <span>Загрузите Excel/CSV</span></div>
@@ -667,218 +424,89 @@
                 <div class="benefit-item"><i class="fas fa-traffic-light"></i> <span>Светофор по KPI</span></div>
             </div>
             <div class="cta-group">
-                <button class="btn-secondary" id="secondaryCta">Попробовать на 3 дня бесплатно</button>
+                <button class="btn-primary" id="mainCta">🔘 Начать бесплатно</button>
+                <button class="btn-secondary" id="secondaryCta">Смотреть демо</button>
             </div>
-            <div class="demo-hint" id="demoHint">3 дня бесплатного доступа</div>
+            <div class="demo-hint" id="demoHint">Без карты, без телефона — просто email</div>
         </section>
 
         <!-- Блок "Как это работает" -->
         <section class="section">
             <h2 class="section-title" id="howTitle">Одна платформа — два мира</h2>
-            <div class="cards" id="cardsContainer"></div>
+            <div class="cards" id="cardsContainer">
+                <!-- контент карточек будет динамически меняться через JS -->
+                <div class="card"><i class="fas fa-upload"></i><h3>Загрузите данные</h3><p>CSV, Excel, CRM, Google Sheets</p></div>
+                <div class="card"><i class="fas fa-robot"></i><h3>Готовый отчёт</h3><p>Автоматические инсайты</p></div>
+                <div class="card"><i class="fas fa-chart-simple"></i><h3>Следите за целями</h3><p>Красный/зелёный по KPI</p></div>
+            </div>
         </section>
 
         <!-- Тарифы -->
         <section class="section">
             <h2 class="section-title" id="priceTitle">Выберите свой план</h2>
-            <div class="pricing" id="pricingContainer"></div>
+            <div class="pricing" id="pricingContainer">
+                <!-- JS заполнит тарифы под режим -->
+            </div>
         </section>
 
         <footer>
             <p>© 2025 DataMint — аналитика без границ</p>
-            <p style="margin-top: 12px;"><a class="footer-policy">Политика конфиденциальности</a> | <a class="footer-docs">Документация API</a></p>
+            <p style="margin-top: 12px;"><a href="#" style="color: inherit;">Политика конфиденциальности</a> | <a href="#" style="color: inherit;">Документация API</a></p>
         </footer>
     </div>
 
-    <!-- Модальное окно регистрации -->
-    <div class="modal" id="registerModal">
-        <div class="modal-content">
-            <button class="modal-close" id="modalClose">&times;</button>
-            <h2 id="modalTitle">Регистрация</h2>
-            <div class="modal-subtitle" id="modalSubtitle">Начните использовать DataMint уже сегодня</div>
-            
-            <div class="selected-plan-info" id="selectedPlanInfo">
-                <span id="selectedPlanText">Выбранный тариф</span>
-                <span class="selected-plan-price" id="selectedPlanPrice"></span>
-            </div>
-
-            <form id="registerForm">
-                <div class="form-group">
-                    <label id="nameLabel">Имя и фамилия</label>
-                    <input type="text" id="fullName" placeholder="Иван Иванов" required>
-                </div>
-                <div class="form-group">
-                    <label id="emailLabel">Email</label>
-                    <input type="email" id="email" placeholder="ivan@example.com" required>
-                </div>
-                <div class="form-group">
-                    <label id="phoneLabel">Телефон</label>
-                    <input type="tel" id="phone" placeholder="+7 (999) 123-45-67" required>
-                </div>
-                <div class="form-group">
-                    <label id="planLabel">Тариф</label>
-                    <select id="planSelect" required></select>
-                </div>
-                <button type="submit" class="btn-submit" id="submitBtn">Зарегистрироваться</button>
-            </form>
-        </div>
-    </div>
-
     <script>
-        // ======================= МУЛЬТИЯЗЫЧНЫЙ КОНТЕНТ =======================
-        const translations = {
-            ru: {
-                // Header
-                features: "Возможности",
-                pricing: "Тарифы",
-                blog: "Блог",
-                login: "Войти",
-                // Mode names
-                beginnerMode: "👶 Аналитический режим для новичка",
-                professionalMode: "👨‍💻 Аналитический режим для профессионала",
-                // Hero beginner
-                beginnerTitle: "Аналитика, которая говорит по-человечески",
-                beginnerSubhead: "Готовые отчёты, понятные графики и подсказки внутри. Вам не нужен аналитик в штате.",
-                beginnerBenefits: [
+        // ======================= ДАННЫЕ ДЛЯ ДВУХ РЕЖИМОВ =======================
+        const content = {
+            beginner: {
+                heroTitle: "Аналитика, которая говорит по-человечески",
+                heroSubhead: "Готовые отчёты, понятные графики и подсказки внутри. Вам не нужен аналитик в штате.",
+                benefits: [
                     '<i class="fas fa-file-excel"></i> <span>Загрузите Excel/CSV</span>',
                     '<i class="fas fa-chart-line"></i> <span>Автоинсайты простыми словами</span>',
                     '<i class="fas fa-traffic-light"></i> <span>Светофор по KPI</span>'
                 ],
-                beginnerMainCta: "🔘 Начать бесплатно — режим Новичок",
-                beginnerSecondaryCta: "Попробовать на 3 дня",
-                beginnerDemoHint: "3 дня бесплатного доступа — без карты и телефона",
-                // Hero professional
-                professionalTitle: "Гибкая аналитика на стероидах",
-                professionalSubhead: "SQL-редактор, кастомные метрики, API, джойны и любые срезы данных. Контроль над каждым битом.",
-                professionalBenefits: [
-                    '<i class="fas fa-database"></i> <span>SQL + Python внутри</span>',
-                    '<i class="fas fa-chart-line"></i> <span>Кастомные дашборды</span>',
-                    '<i class="fas fa-plug"></i> <span>REST API & Webhooks</span>'
-                ],
-                professionalMainCta: "🚀 Открыть консоль — режим Профессионал",
-                professionalSecondaryCta: "Документация для разработчиков",
-                professionalDemoHint: "3 дня бесплатного доступа ко всем функциям",
-                // Cards beginner
-                beginnerCards: [
+                mainCtaText: "🔘 Начать бесплатно — режим Новичок",
+                secondaryCtaText: "Посмотреть демо (3 дня)",
+                demoHint: "Без карты, без телефона — просто email",
+                cards: [
                     { icon: "fas fa-upload", title: "Загрузите данные", desc: "CSV, Excel, CRM, Google Sheets — без лишних настроек" },
                     { icon: "fas fa-chart-pie", title: "Готовый дашборд", desc: "Красивые графики и понятные цифры" },
                     { icon: "fas fa-lightbulb", title: "Подсказки внутри", desc: "Что растёт, что падает — объясняем" }
                 ],
-                // Cards professional
-                professionalCards: [
+                plans: [
+                    { name: "1 месяц", price: "1000", features: "1 дашборд / до 1000 строк", cta: "Начать" },
+                    { name: "6 месяцев", price: "5000", features: "10 дашбордов / автоотчёты", cta: "Выбрать" },
+                    { name: "12 месяцев", price: "10000", features: "Безлимит / приоритетная поддержка", cta: "Попробовать" }
+                ]
+            },
+            professional: {
+                heroTitle: "Режим профессионала",
+                heroSubhead: "SQL-редактор, кастомные метрики, API, джойны и любые срезы данных. Контроль над каждым битом.",
+                benefits: [
+                    '<i class="fas fa-database"></i> <span>SQL + Python внутри</span>',
+                    '<i class="fas fa-chart-line"></i> <span>Кастомные дашборды</span>',
+                    '<i class="fas fa-plug"></i> <span>REST API & Webhooks</span>'
+                ],
+                mainCtaText: "Открыть консоль — режим Профессионал",
+                secondaryCtaText: "Документация для разработчиков",
+                demoHint: "Бесплатно 3 дня",
+                cards: [
                     { icon: "fas fa-code", title: "Пишите запросы", desc: "SQL-редактор с автодополнением" },
                     { icon: "fas fa-chart-line", title: "Любая визуализация", desc: "Heatmap, таблицы, кастомные чарты" },
                     { icon: "fas fa-cloud-upload-alt", title: "API & Webhooks", desc: "Интеграция с любыми системами" }
                 ],
-                // Plans beginner
-                beginnerPlans: [
-                    { name: "1 месяц", period: "30 дней доступа", price: "1 000", suffix: "₽", features: ["Все базовые отчёты", "Email-поддержка", "До 5 дашбордов"] },
-                    { name: "6 месяцев", period: "180 дней доступа", price: "5 000", suffix: "₽", features: ["Всё из 1 месяца", "Приоритетная поддержка", "До 20 дашбордов", "Экономия 1000₽"] },
-                    { name: "1 год", period: "365 дней доступа", price: "10 000", suffix: "₽", features: ["Всё из 6 месяцев", "Автоотчёты на email", "До 50 дашбордов", "Экономия 2000₽"] }
-                ],
-                // Plans professional
-                professionalPlans: [
-                    { name: "1 месяц", period: "30 дней доступа", price: "1 500", suffix: "₽", features: ["Все возможности платформы", "SQL-редактор", "API до 10k запросов", "Поддержка 24/7"] },
-                    { name: "6 месяцев", period: "180 дней доступа", price: "8 000", suffix: "₽", features: ["Всё из 1 месяца", "Приоритетная поддержка", "API до 100k запросов", "Экономия 1000₽"] },
-                    { name: "1 год", period: "365 дней доступа", price: "15 000", suffix: "₽", features: ["Всё из 6 месяцев", "Выделенный менеджер", "API безлимит", "Экономия 3000₽"] }
-                ],
-                // Section titles
-                howTitle: "Одна платформа — два мира",
-                priceTitle: "Выберите свой план",
-                // Modal
-                modalTitle: "Регистрация",
-                modalSubtitle: "Начните использовать DataMint уже сегодня",
-                selectedPlanText: "Выбранный тариф:",
-                nameLabel: "Имя и фамилия",
-                emailLabel: "Email",
-                phoneLabel: "Телефон",
-                planLabel: "Тариф",
-                submitBtn: "Зарегистрироваться",
-                // Footer
-                policy: "Политика конфиденциальности",
-                docs: "Документация API"
-            },
-            en: {
-                // Header
-                features: "Features",
-                pricing: "Pricing",
-                blog: "Blog",
-                login: "Log in",
-                // Mode names
-                beginnerMode: "👶 Beginner Analytics Mode",
-                professionalMode: "👨‍💻 Professional Analytics Mode",
-                // Hero beginner
-                beginnerTitle: "Analytics that speaks human",
-                beginnerSubhead: "Ready-made reports, clear charts, and built-in tips — no formulas or complex setup.",
-                beginnerBenefits: [
-                    '<i class="fas fa-file-excel"></i> <span>Upload Excel/CSV</span>',
-                    '<i class="fas fa-chart-line"></i> <span>Auto insights in plain words</span>',
-                    '<i class="fas fa-traffic-light"></i> <span>KPI traffic light</span>'
-                ],
-                beginnerMainCta: "🔘 Start free — Beginner mode",
-                beginnerSecondaryCta: "Try for 3 days",
-                beginnerDemoHint: "3 days free access — no credit card required",
-                // Hero professional
-                professionalTitle: "Flexible analytics on steroids",
-                professionalSubhead: "SQL editor, custom metrics, API, joins, and any data slices. Full control over every bit.",
-                professionalBenefits: [
-                    '<i class="fas fa-database"></i> <span>SQL + Python inside</span>',
-                    '<i class="fas fa-chart-line"></i> <span>Custom dashboards</span>',
-                    '<i class="fas fa-plug"></i> <span>REST API & Webhooks</span>'
-                ],
-                professionalMainCta: "🚀 Open console — Professional mode",
-                professionalSecondaryCta: "Developer documentation",
-                professionalDemoHint: "3 days free access to all features",
-                // Cards beginner
-                beginnerCards: [
-                    { icon: "fas fa-upload", title: "Upload data", desc: "CSV, Excel, CRM, Google Sheets — no extra setup" },
-                    { icon: "fas fa-chart-pie", title: "Ready dashboard", desc: "Beautiful charts and clear numbers" },
-                    { icon: "fas fa-lightbulb", title: "Built-in tips", desc: "What's growing, what's falling — explained" }
-                ],
-                // Cards professional
-                professionalCards: [
-                    { icon: "fas fa-code", title: "Write queries", desc: "SQL editor with autocomplete" },
-                    { icon: "fas fa-chart-line", title: "Any visualization", desc: "Heatmaps, tables, custom charts" },
-                    { icon: "fas fa-cloud-upload-alt", title: "API & Webhooks", desc: "Integrate with any system" }
-                ],
-                // Plans beginner
-                beginnerPlans: [
-                    { name: "1 month", period: "30 days access", price: "1,000", suffix: "₽", features: ["All basic reports", "Email support", "Up to 5 dashboards"] },
-                    { name: "6 months", period: "180 days access", price: "5,000", suffix: "₽", features: ["Everything in 1 month", "Priority support", "Up to 20 dashboards", "Save 1,000₽"] },
-                    { name: "1 year", period: "365 days access", price: "10,000", suffix: "₽", features: ["Everything in 6 months", "Email auto-reports", "Up to 50 dashboards", "Save 2,000₽"] }
-                ],
-                // Plans professional
-                professionalPlans: [
-                    { name: "1 month", period: "30 days access", price: "1,500", suffix: "₽", features: ["All platform features", "SQL editor", "API up to 10k requests", "24/7 support"] },
-                    { name: "6 months", period: "180 days access", price: "8,000", suffix: "₽", features: ["Everything in 1 month", "Priority support", "API up to 100k requests", "Save 1,000₽"] },
-                    { name: "1 year", period: "365 days access", price: "15,000", suffix: "₽", features: ["Everything in 6 months", "Dedicated manager", "Unlimited API", "Save 3,000₽"] }
-                ],
-                // Section titles
-                howTitle: "One platform — two worlds",
-                priceTitle: "Choose your plan",
-                // Modal
-                modalTitle: "Registration",
-                modalSubtitle: "Start using DataMint today",
-                selectedPlanText: "Selected plan:",
-                nameLabel: "Full name",
-                emailLabel: "Email",
-                phoneLabel: "Phone",
-                planLabel: "Plan",
-                submitBtn: "Sign up",
-                // Footer
-                policy: "Privacy Policy",
-                docs: "API Documentation"
+                plans: [
+                    { name: "1 месяц", price: "1500", features: "1000 API-вызовов / SQL read-only", cta: "Начать" },
+                    { name: "6 месяцев", price: "8000", features: "100k вызовов / кастомные метрики", cta: "Выбрать" },
+                    { name: "12 месяцев", price: "15000", features: "SLA / on‑premise / аудит", cta: "Связаться" }
+                ]
             }
         };
-
-        let currentMode = "beginner";
-        let currentLang = "ru";
-        let selectedPlanForModal = null;
 
         // DOM элементы
         const body = document.body;
         const modeBtns = document.querySelectorAll('.mode-btn');
-        const langBtns = document.querySelectorAll('.lang-btn');
         const heroTitle = document.getElementById('heroTitle');
         const heroSubhead = document.getElementById('heroSubhead');
         const benefitsList = document.getElementById('benefitsList');
@@ -887,30 +515,69 @@
         const demoHint = document.getElementById('demoHint');
         const cardsContainer = document.getElementById('cardsContainer');
         const pricingContainer = document.getElementById('pricingContainer');
-        const howTitle = document.getElementById('howTitle');
-        const priceTitle = document.getElementById('priceTitle');
-        
-        // Modal элементы
-        const modal = document.getElementById('registerModal');
-        const modalClose = document.getElementById('modalClose');
-        const modalTitle = document.getElementById('modalTitle');
-        const modalSubtitle = document.getElementById('modalSubtitle');
-        const selectedPlanText = document.getElementById('selectedPlanText');
-        const selectedPlanPrice = document.getElementById('selectedPlanPrice');
-        const planSelect = document.getElementById('planSelect');
-        const registerForm = document.getElementById('registerForm');
 
-        // Функция обновления всего контента
-        function updateContent() {
-            const t = translations[currentLang];
-            const modeData = currentMode === "beginner" ? {
-                title: t.beginnerTitle,
-                subhead: t.beginnerSubhead,
-                benefits: t.beginnerBenefits,
-                mainCta: t.beginnerMainCta,
-                secondaryCta: t.beginnerSecondaryCta,
-                demoHint: t.beginnerDemoHint,
-                cards: t.beginnerCards,
-                plans: t.beginnerPlans
-            } : {
-                title: t.pro
+        // Функция применения режима
+        function setMode(mode) {
+            const data = content[mode];
+            if (!data) return;
+
+            // Меняем класс на body
+            body.classList.remove('mode-beginner', 'mode-professional');
+            body.classList.add(`mode-${mode}`);
+
+            // Активная кнопка
+            modeBtns.forEach(btn => {
+                const btnMode = btn.getAttribute('data-mode');
+                if (btnMode === mode) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+
+            // Обновляем Hero
+            heroTitle.innerText = data.heroTitle;
+            heroSubhead.innerText = data.heroSubhead;
+            benefitsList.innerHTML = data.benefits.map(b => `<div class="benefit-item">${b}</div>`).join('');
+            mainCta.innerText = data.mainCtaText;
+            secondaryCta.innerText = data.secondaryCtaText;
+            demoHint.innerText = data.demoHint;
+
+            // Обновляем карточки "Как это работает"
+            cardsContainer.innerHTML = data.cards.map(card => `
+                <div class="card">
+                    <i class="${card.icon}"></i>
+                    <h3>${card.title}</h3>
+                    <p>${card.desc}</p>
+                </div>
+            `).join('');
+
+            // Обновляем тарифы
+            pricingContainer.innerHTML = data.plans.map(plan => `
+                <div class="plan">
+                    <h3>${plan.name}</h3>
+                    <div class="price">${plan.price}</div>
+                    <p>${plan.features}</p>
+                    <button class="btn-primary" style="margin-top: 20px; width: 100%;">${plan.cta}</button>
+                </div>
+            `).join('');
+        }
+
+        // Обработчики переключения режимов
+        modeBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const mode = btn.getAttribute('data-mode');
+                setMode(mode);
+            });
+        });
+
+        // Просто для демо — алерты на кнопки
+        document.getElementById('loginBtn')?.addEventListener('click', () => alert('Форма входа (демо)'));
+        mainCta.addEventListener('click', () => alert('Регистрация / начало работы (демо)'));
+        secondaryCta.addEventListener('click', () => alert('Демо-режим (видео / экскурсия)'));
+
+        // Стартовый режим — новичок
+        setMode('beginner');
+    </script>
+</body>
+</html>
